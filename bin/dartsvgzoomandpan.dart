@@ -66,9 +66,37 @@ void attach(Element svg) {
       updateMousePosition(e);
     }
   });
+  svg.onClick.listen((e) => panning = false);
+  svg.onMouseWheel.listen((MouseEvent event) {
+    if(event.deltaY > 0) {
+      scale /= KEY_ZOOM_STEP;
+    } else {
+      scale *= KEY_ZOOM_STEP;
+    }
+    updateZoom();
+    event.preventDefault();
+  });
 }
 
-setViewBox(Element svg, s.Rect viewBox) {
+void updateZoom() {
+  if (scale < minScale)
+    scale = minScale;
+  num x = mouse.x;
+  num y = mouse.y;
+  s.Point before = toUsertSpace(x, y);
+  s.Rect viewbox = getViewBox(svg);
+  viewbox.width = size.x / scale;
+  viewbox.height = size.y / scale;
+  setViewBox(svg, viewbox);
+  s.Point after = toUsertSpace(x, y);
+  num dx = before.x - after.x;
+  num dy = before.y - after.y;
+  viewbox.x = viewbox.x + dx;
+  viewbox.y = viewbox.y + dy;
+  setViewBox(svg, viewbox);
+}
+
+void setViewBox(Element svg, s.Rect viewBox) {
   svg.attributes['viewBox'] = "${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}";
 }
 
