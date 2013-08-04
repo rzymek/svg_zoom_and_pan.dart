@@ -1,4 +1,7 @@
-name: dartsvgZoomAndPan
-description: A sample command-line application
+name: svg_zoom_and_pan
+version: 0.0.1
+author: Krzysztof Rzymkowski <rzymek@gmail.com>
+description: SVG zoom and pan support
+homepage: https://github.com/rzymek/dartSvgZoomAndPan
 dependencies:
-  browser: any
+  browser: '>=0.6.14'

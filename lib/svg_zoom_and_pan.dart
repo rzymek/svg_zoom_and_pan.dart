@@ -1,3 +1,5 @@
+library svg_zoom_and_pan;
+
 import 'dart:html';
 import 'dart:core';
 import 'dart:svg' as svg;
