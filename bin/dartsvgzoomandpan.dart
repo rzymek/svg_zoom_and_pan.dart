@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:core';
 import 'dart:svg' as s;
 import 'dart:math' as math;
 
@@ -75,6 +76,27 @@ void attach(Element svg) {
     }
     updateZoom();
     event.preventDefault();
+  });
+  window.onKeyPress.listen((KeyboardEvent e) {
+    String c =  new String.fromCharCode(e.charCode);
+    switch (c) {
+      case ']':
+        scale /= KEY_ZOOM_STEP;
+        updateZoom();
+        break;
+      case '[':
+        scale *= KEY_ZOOM_STEP;
+        updateZoom();
+        break;
+      case '\\':
+        scale = 1;
+        updateZoom();
+        s.Rect viewBox = getViewBox(svg);
+        viewBox.x = 0;
+        viewBox.y = 0;
+        setViewBox(svg, viewBox);
+        break;
+      }
   });
 }
 
