@@ -1,5 +1,5 @@
 name: svg_zoom_and_pan
-version: 0.0.3
+version: 0.0.4
 author: Krzysztof Rzymkowski <eerzymek@gmail.com>
 description: SVG zoom and pan support
 homepage: https://github.com/rzymek/svg_zoom_and_pan.dart

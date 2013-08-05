@@ -28,17 +28,6 @@ class _SvgZoomAndPan {
     attach();    
   }
   
-  svg.Rect getViewBox() {
-    String vb = root.attributes["viewBox"];
-    List<String> vals = vb.split(" ");
-    svg.Rect rect = root.createSvgRect();
-    rect.x = double.parse(vals[0]);
-    rect.y = double.parse(vals[1]);
-    rect.width = double.parse(vals[2]);
-    rect.height = double.parse(vals[3]);
-    return rect;
-  }
-  
   void updateMousePosition(MouseEvent e) {
     mouse.x = e.client.x;
     mouse.y = e.client.y;
@@ -128,8 +117,13 @@ class _SvgZoomAndPan {
     setViewBox(viewbox);
   }
   
+  //Workaround: https://code.google.com/p/dart/issues/detail?id=12224
   void setViewBox(svg.Rect viewBox) {
     root.attributes['viewBox'] = "${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}";
+  }
+  
+  svg.Rect getViewBox() {
+    return root.viewBox.baseVal;
   }
 }  
 
