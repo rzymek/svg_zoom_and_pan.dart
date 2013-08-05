@@ -136,6 +136,3 @@ class _SvgZoomAndPan {
 void setupZoomAndPan(svg.SvgSvgElement root) {
   new _SvgZoomAndPan(root);
 }
-main() {
-  setupZoomAndPan(query('svg'));
-}
